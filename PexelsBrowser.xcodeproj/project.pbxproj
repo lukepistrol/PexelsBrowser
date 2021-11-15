@@ -25,6 +25,7 @@
 		2861B2AD2742B0BF0026CBF6 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2861B2AC2742B0BF0026CBF6 /* APIKeys.swift */; };
 		2861B2AF2742B1240026CBF6 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2861B2AE2742B1240026CBF6 /* Environment.swift */; };
 		2861B2B12742B1FD0026CBF6 /* APIUrls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2861B2B02742B1FD0026CBF6 /* APIUrls.swift */; };
+		2861B2B32742B6C70026CBF6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2861B2B22742B6C60026CBF6 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		2861B2AC2742B0BF0026CBF6 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		2861B2AE2742B1240026CBF6 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		2861B2B02742B1FD0026CBF6 /* APIUrls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUrls.swift; sourceTree = "<group>"; };
+		2861B2B22742B6C60026CBF6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 		28506CDD2742485800EDA33E = {
 			isa = PBXGroup;
 			children = (
+				2861B2B22742B6C60026CBF6 /* README.md */,
 				28506CE82742485800EDA33E /* PexelsBrowser */,
 				28506CE72742485800EDA33E /* Products */,
 			);
@@ -211,6 +214,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2861B2B32742B6C70026CBF6 /* README.md in Resources */,
 				28506CF12742485900EDA33E /* Preview Assets.xcassets in Resources */,
 				28506CEE2742485800EDA33E /* Assets.xcassets in Resources */,
 			);
