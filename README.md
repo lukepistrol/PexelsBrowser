@@ -1,6 +1,8 @@
 # PexelsBrowser
 Simple app using [Pexels](https://pexels.com) API written in Swift using SwiftUI
 
+![Pexels Browser Preview](https://github.com/lukepistrol/PexelsBrowser/blob/master/Resources/PexelsBrowserApp.jpg "Pexels Browser")
+
 This app showcases how to implement simple APIs from providers like [Pexels](https://pexels.com)
 
 **Note:** You must include your own API Key in a new File like this:
