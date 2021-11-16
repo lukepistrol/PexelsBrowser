@@ -15,22 +15,33 @@ class APIRequest {
 	
 	private static let sessionProcessingQueue = DispatchQueue(label: "SessionProcessingQueue")
 	
-	public func fetch(_ type: ViewModel.StreamType = .curated, searchText query: String? = nil) {
-		if type == .search {
-			fetch(query != nil ?
-					.search : .curated,
-				  query: query ?? "")
-		} else {
-			fetch(.curated, query: "")
+	public func fetch(_ type: ViewModel.StreamType = .curated,
+					  searchText query: String? = nil,
+					  page: Int = 1, completion: @escaping (Array<Photo>) -> ()) {
+		var url: URLComponents = url(for: type)
+		var param: Array<URLQueryItem> = [.init(name: "page", value: "\(page)")]
+		
+		switch type {
+		case .curated:
+			break
+		case .search:
+			guard let query = query else { return }
+			param.append(.init(name: "query", value: query))
+		}
+		
+		url.queryItems = param
+		guard let url = url.url else { return }
+		fetch(url) { results in
+			completion(results)
 		}
 	}
 	
-	private func fetch(_ type: ViewModel.StreamType, query: String) {
-		var request = URLRequest(url: URL(string: "\(url(for: type))\(query.percentEncoded)")!)
+	private func fetch(_ url: URL,
+					   completion: @escaping (Array<Photo>) -> ()) {
+		var req = URLRequest(url: url)
+		req.setValue(Environment.APIKeys.pexels.key, forHTTPHeaderField: Environment.APIKeys.pexels.header)
 		
-		request.setValue(Environment.APIKeys.pexels.key, forHTTPHeaderField: Environment.APIKeys.pexels.header)
-		
-		cancelable = URLSession.shared.dataTaskPublisher(for: request)
+		cancelable = URLSession.shared.dataTaskPublisher(for: req)
 			.subscribe(on: Self.sessionProcessingQueue)
 			.map({ return $0.data })
 			.decode(type: ResultsWrapper.self, decoder: JSONDecoder())
@@ -43,13 +54,15 @@ class APIRequest {
 					print(error.localizedDescription)
 				}
 			}, receiveValue: { (wrapper) in
-				if type == .curated {
-					ViewModel.shared.setCuratedPhotos(wrapper.photos)
-				}
-				if type == .search {
-					ViewModel.shared.setSearchResults(wrapper.photos)
-				}
+				completion(wrapper.photos)
 			})
+	}
+	
+	private func url(for type: ViewModel.StreamType) -> URLComponents {
+		switch type {
+		case .curated: return URLComponents(string: Environment.APIUrls.Pexels.curated)!
+		case .search: return URLComponents(string: Environment.APIUrls.Pexels.search)!
+		}
 	}
 	
 	private func url(for type: ViewModel.StreamType) -> String {

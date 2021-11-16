@@ -8,18 +8,34 @@
 import SwiftUI
 
 struct PopularView: View {
+	@Binding var selectedView: Int
+	
 	@StateObject private var model = ViewModel.shared
 	
 	var body: some View {
 		NavigationView {
 			ScrollView {
-				VStack(spacing: 0) {
+				LazyVStack(spacing: 0) {
 					ForEach(model.curatedPhotos) { photo in
 						PhotoCard(photo: photo)
+							.onAppear {
+								if photo.id == model.curatedPhotos.last?.id {
+									model.curatedImages(nextPage: true)
+								}
+							}
 					}
 				}
 			}
 			.navigationTitle("Popular")
+			.toolbar(content: {
+				ToolbarItem(placement: .navigationBarTrailing) {
+					Button { selectedView = 1 } label: {
+						Label("Search", systemImage: "magnifyingglass")
+							.foregroundColor(.accentColor)
+							.labelStyle(.iconOnly)
+					}
+				}
+			})
 		}
 		.alert(model.notification?.title ?? "", isPresented: $model.showNotification, actions: {
 			Button("Dismiss") {

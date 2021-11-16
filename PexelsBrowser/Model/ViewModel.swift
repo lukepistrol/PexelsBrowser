@@ -22,6 +22,9 @@ class ViewModel: ObservableObject {
 		}
 	}
 	
+	private var curatedPage = 1
+	private var searchPage = 1
+	
 	static let shared: ViewModel = .init()
 	
 	init() {
@@ -36,12 +39,26 @@ class ViewModel: ObservableObject {
 		self.searchResults = photos
 	}
 	
-	func searchImages(_ query: String) {
-		APIRequest.shared.fetch(.search, searchText: query)
+	func searchImages(_ query: String, nextPage: Bool = false) {
+		if nextPage { searchPage += 1 } else { searchPage = 1 }
+		APIRequest.shared.fetch(.search, searchText: query, page: searchPage) { results in
+			if self.searchPage == 1 {
+				self.searchResults = results
+			} else {
+				self.searchResults.append(contentsOf: results)
+			}
+		}
 	}
 	
-	func curatedImages() {
-		APIRequest.shared.fetch()
+	func curatedImages(nextPage: Bool = false) {
+		if nextPage { curatedPage += 1 } else { curatedPage = 1 }
+		APIRequest.shared.fetch(.curated, page: curatedPage) { results in
+			if self.curatedPage == 1 {
+				self.curatedPhotos = results
+			} else {
+				self.curatedPhotos.append(contentsOf: results)
+			}
+		}
 	}
 	
 	func save(image: Photo) {

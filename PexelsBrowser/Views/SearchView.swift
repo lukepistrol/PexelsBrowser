@@ -15,9 +15,14 @@ struct SearchView: View {
 	var body: some View {
 		NavigationView {
 			ScrollView {
-				VStack(spacing: 0) {
+				LazyVStack(spacing: 0) {
 					ForEach(model.searchResults) { photo in
 						PhotoCard(photo: photo)
+							.onAppear {
+								if photo.id == model.searchResults.last?.id {
+									model.searchImages(searchText, nextPage: true)
+								}
+							}
 					}
 				}
 			}

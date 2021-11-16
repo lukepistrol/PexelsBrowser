@@ -8,12 +8,17 @@
 import SwiftUI
 
 struct RouterView: View {
+	
+	@State private var selectedView: Int = 0
+	
 	var body: some View {
-		TabView {
-			PopularView()
+		TabView(selection: $selectedView) {
+			PopularView(selectedView: $selectedView)
 				.tabItem { Label("Popular", systemImage: "sparkles") }
+				.tag(0)
 			SearchView()
 				.tabItem { Label("Search", systemImage: "magnifyingglass") }
+				.tag(1)
 		}
 	}
 }
