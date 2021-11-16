@@ -19,7 +19,7 @@ struct PopularView: View {
 					ForEach(model.curatedPhotos) { photo in
 						PhotoCard(photo: photo)
 							.onAppear {
-								if photo.id == model.curatedPhotos.last?.id {
+								if photo == model.curatedPhotos.last {
 									model.curatedImages(nextPage: true)
 								}
 							}

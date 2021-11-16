@@ -19,7 +19,8 @@ class APIRequest {
 					  searchText query: String? = nil,
 					  page: Int = 1, completion: @escaping (Array<Photo>) -> ()) {
 		var url: URLComponents = url(for: type)
-		var param: Array<URLQueryItem> = [.init(name: "page", value: "\(page)")]
+		var param: Array<URLQueryItem> = [.init(name: "page", value: "\(page)"),
+										  .init(name: "per_page", value: "80")]
 		
 		switch type {
 		case .curated:

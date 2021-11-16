@@ -19,7 +19,7 @@ struct SearchView: View {
 					ForEach(model.searchResults) { photo in
 						PhotoCard(photo: photo)
 							.onAppear {
-								if photo.id == model.searchResults.last?.id {
+								if photo == model.searchResults.last {
 									model.searchImages(searchText, nextPage: true)
 								}
 							}
