@@ -34,51 +34,70 @@ struct PhotoCard: View {
 	}
 	
 	var detailBox: some View {
-		HStack(spacing: 12) {
+		return HStack(spacing: 12) {
 			HStack {
 				SubtitleView(title: photo.photographerName, subtitle: "Artist")
 				Spacer()
-				Button {
-					downloading = true
-					Task {
-						model.save(image: photo)
-					}
-				} label: {
-					if downloading {
-						ProgressView()
-					} else {
-						Label("Save", systemImage: "arrow.down")
-							.font(.headline)
-					}
-				}
-				.frame(height: 32)
-				.padding(.horizontal, 12)
-				.background(Capsule().foregroundStyle(.regularMaterial))
+				saveImageButton
 			}
 			.offset(x: 0, y: showDetails ? 0 : 70)
 			.opacity(showDetails ? 1 : 0)
 			
-			Button {
-				withAnimation(.spring(response: 0.3, dampingFraction: 0.7, blendDuration: 1)) {
-					showDetails.toggle()
-				}
-			} label: {
-				Image(systemName: "plus")
-					.rotationEffect(showDetails ? .degrees(-135) : .zero)
-					.font(.headline)
-			}
-			.frame(width: 32, height: 32)
-			.background(Circle().foregroundStyle(showDetails ? .regularMaterial : .ultraThickMaterial))
+			expandButton
 		}
 		.frame(maxWidth: .infinity, alignment: .leading)
 		.padding()
 		.background(Rectangle()
-						.cornerRadius(12)
+						.cornerRadius(8)
 						.foregroundStyle(.thinMaterial)
 						.offset(x: 0, y: showDetails ? 0 : 70)
-						.opacity(showDetails ? 1 : 0))
+						.opacity(showDetails ? 1 : 0)
+						.shadow(color: .black.opacity(0.1), radius: 12, x: 0, y: 2)
+						.padding(4)
+		)
 	}
 	
+	var saveImageButton: some View {
+		Button {
+			downloading = true
+			Task { model.save(image: photo) }
+		} label: {
+			if downloading {
+				ProgressView()
+			} else {
+				Label("Save", systemImage: "arrow.down")
+					.font(.headline)
+			}
+		}
+		.frame(height: 32)
+		.padding(.horizontal, 12)
+		.background(
+			Capsule()
+				.foregroundStyle(.regularMaterial)
+		)
+	}
+	
+	var expandButton: some View {
+		Button {
+			withAnimation(.spring(response: 0.3,
+								  dampingFraction: 0.7,
+								  blendDuration: 1)
+			) {
+				showDetails.toggle()
+			}
+		} label: {
+			Image(systemName: "plus")
+				.rotationEffect(showDetails ?
+									.degrees(-135) : .zero)
+				.font(.headline)
+		}
+		.frame(width: 32,height: 32)
+		.background(
+			Circle()
+				.foregroundStyle(showDetails ?
+									.regularMaterial : .ultraThickMaterial)
+		)
+	}
 	
 	var image: some View {
 		AsyncImage(url: URL(string: photo.src[Photo.Size.large2x.rawValue]!),
