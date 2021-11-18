@@ -16,9 +16,14 @@ struct RouterView: View {
 			PopularView(selectedView: $selectedView)
 				.tabItem { Label("Popular", systemImage: "sparkles") }
 				.tag(0)
+			CollectionsView()
+				.tabItem {
+					Label("Collections", systemImage: "star")
+				}
+				.tag(1)
 			SearchView()
 				.tabItem { Label("Search", systemImage: "magnifyingglass") }
-				.tag(1)
+				.tag(2)
 		}
 	}
 }

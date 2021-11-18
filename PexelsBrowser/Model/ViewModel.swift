@@ -10,8 +10,10 @@ import UIKit
 
 class ViewModel: ObservableObject {
 	
-	@Published private (set) var curatedPhotos: Array<Photo> = []
-	@Published private (set) var searchResults: Array<Photo> = []
+	@Published private (set) var curatedImages: Array<Photo> = []
+	@Published private (set) var searchImages: Array<Photo> = []
+	@Published private (set) var collectionImages: Array<Photo> = []
+	@Published private (set) var collectionCategories: Array<CollectionCategory> = []
 	
 	@Published var showNotification: Bool = false
 	
@@ -24,39 +26,67 @@ class ViewModel: ObservableObject {
 	
 	private var curatedPage = 1
 	private var searchPage = 1
+	private var categoriesPage = 1
+	private var collectionPage = 1
 	
 	static let shared: ViewModel = .init()
 	
 	init() {
-		curatedImages()
+		getCuratedImages()
 	}
 	
-	func setCuratedPhotos(_ photos: Array<Photo>) {
-		self.curatedPhotos = photos
+	func setCuratedImages(_ photos: Array<Photo>) {
+		self.curatedImages = photos
 	}
 	
-	func setSearchResults(_ photos: Array<Photo>) {
-		self.searchResults = photos
+	func setSearchImages(_ photos: Array<Photo>) {
+		self.searchImages = photos
 	}
 	
-	func searchImages(_ query: String, nextPage: Bool = false) {
+	func setCollectionImages(_ photos: Array<Photo>) {
+		self.collectionImages = photos
+	}
+	
+	func getSearchImages(_ query: String, nextPage: Bool = false) {
 		if nextPage { searchPage += 1 } else { searchPage = 1 }
 		APIRequest.shared.fetch(.search, searchText: query, page: searchPage) { results in
 			if self.searchPage == 1 {
-				self.searchResults = results
+				self.searchImages = results
 			} else {
-				self.searchResults.append(contentsOf: results)
+				self.searchImages.append(contentsOf: results)
 			}
 		}
 	}
 	
-	func curatedImages(nextPage: Bool = false) {
+	func getCuratedImages(nextPage: Bool = false) {
 		if nextPage { curatedPage += 1 } else { curatedPage = 1 }
 		APIRequest.shared.fetch(.curated, page: curatedPage) { results in
 			if self.curatedPage == 1 {
-				self.curatedPhotos = results
+				self.curatedImages = results
 			} else {
-				self.curatedPhotos.append(contentsOf: results)
+				self.curatedImages.append(contentsOf: results)
+			}
+		}
+	}
+	
+	func getCollectionImages(for id: String, nextPage: Bool = false) {
+		if nextPage { collectionPage += 1 } else { collectionPage = 1 }
+		APIRequest.shared.fetch(.collections, searchText: id, page: collectionPage) { results in
+			if self.collectionPage == 1 {
+				self.collectionImages = results
+			} else {
+				self.collectionImages.append(contentsOf: results)
+			}
+		}
+	}
+	
+	func getCollectionCategories(nextPage: Bool = false) {
+		if nextPage { categoriesPage += 1 } else { categoriesPage = 1 }
+		APIRequest.shared.fetchCollectionCategories(page: categoriesPage) { results in
+			if self.categoriesPage == 1 {
+				self.collectionCategories = results.filter { $0.photosCount > 0 }
+			} else {
+				self.collectionCategories.append(contentsOf: results.filter { $0.photosCount > 0 })
 			}
 		}
 	}
@@ -79,7 +109,7 @@ class ViewModel: ObservableObject {
 	}
 	
 	enum StreamType: String {
-		case curated, search
+		case curated, search, collections
 	}
 }
 

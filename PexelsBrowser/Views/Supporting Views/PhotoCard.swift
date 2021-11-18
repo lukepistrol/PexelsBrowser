@@ -36,7 +36,7 @@ struct PhotoCard: View {
 	var detailBox: some View {
 		return HStack(spacing: 12) {
 			HStack {
-				SubtitleView(title: photo.photographerName, subtitle: "Artist")
+				SubtitleView(title: photo.photographer, subtitle: "Artist")
 				Spacer()
 				saveImageButton
 			}
@@ -105,7 +105,7 @@ struct PhotoCard: View {
 			switch phase {
 			case .empty:
 				ZStack {
-					Rectangle().foregroundColor(.white)
+					Rectangle().foregroundColor(.init(hex: photo.avgColor ?? "#FFFFFF"))
 					ProgressView()
 				}.aspectRatio(Double(photo.width)/Double(photo.height), contentMode: .fit)
 			case .success(let image):
@@ -114,7 +114,11 @@ struct PhotoCard: View {
 					.aspectRatio(Double(photo.width)/Double(photo.height), contentMode: .fit)
 					.transition(.scale(scale: 1.05, anchor: .center).combined(with: .opacity).animation(.easeInOut))
 			case .failure(_):
-				Image(systemName: "wifi.slash")
+				ZStack {
+					Rectangle().foregroundColor(.init(hex: photo.avgColor ?? "#FFFFFF"))
+					Image(systemName: "wifi.exclamationmark")
+						.font(.largeTitle)
+				}.aspectRatio(Double(photo.width)/Double(photo.height), contentMode: .fit)
 			@unknown default: EmptyView()
 			}
 		}

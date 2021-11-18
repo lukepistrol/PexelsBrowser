@@ -16,11 +16,11 @@ struct SearchView: View {
 		NavigationView {
 			ScrollView {
 				LazyVStack(spacing: 0) {
-					ForEach(model.searchResults) { photo in
+					ForEach(model.searchImages) { photo in
 						PhotoCard(photo: photo)
 							.onAppear {
-								if photo == model.searchResults.last {
-									model.searchImages(searchText, nextPage: true)
+								if photo == model.searchImages.last {
+									model.getSearchImages(searchText, nextPage: true)
 								}
 							}
 					}
@@ -29,11 +29,11 @@ struct SearchView: View {
 			.navigationTitle("Search")
 			.searchable(text: $searchText, placement: .navigationBarDrawer, prompt: "Search")
 			.onSubmit(of: .search) {
-				model.searchImages(searchText)
+				model.getSearchImages(searchText)
 			}
 			.onChange(of: searchText) { newValue in
 				if searchText.isEmpty {
-					model.setSearchResults([])
+					model.setSearchImages([])
 				}
 			}
 			.alert(model.notification?.title ?? "", isPresented: $model.showNotification, actions: {

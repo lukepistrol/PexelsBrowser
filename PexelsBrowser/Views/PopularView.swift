@@ -16,11 +16,11 @@ struct PopularView: View {
 		NavigationView {
 			ScrollView {
 				LazyVStack(spacing: 0) {
-					ForEach(model.curatedPhotos) { photo in
+					ForEach(model.curatedImages) { photo in
 						PhotoCard(photo: photo)
 							.onAppear {
-								if photo == model.curatedPhotos.last {
-									model.curatedImages(nextPage: true)
+								if photo == model.curatedImages.last {
+									model.getCuratedImages(nextPage: true)
 								}
 							}
 					}

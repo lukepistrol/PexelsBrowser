@@ -12,6 +12,7 @@ extension Environment {
 		struct Pexels {
 			static let search: String = "https://api.pexels.com/v1/search"
 			static let curated: String = "https://api.pexels.com/v1/curated"
+			static let collections: String = "https://api.pexels.com/v1/collections"
 		}
 	}
 }

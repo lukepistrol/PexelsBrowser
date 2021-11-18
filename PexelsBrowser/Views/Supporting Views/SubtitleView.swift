@@ -10,16 +10,19 @@ import SwiftUI
 struct SubtitleView: View {
 	var title: String
 	var subtitle: String
+	var spacing: Double = 4
 	
 	var body: some View {
-		VStack(alignment: .leading) {
+		VStack(alignment: .leading, spacing: spacing) {
 			Text(title)
 				.font(.headline)
 				.foregroundColor(.primary)
-			Text(subtitle)
-				.bold()
-				.font(.caption)
-				.foregroundStyle(.secondary)
+			if !subtitle.isEmpty {
+				Text(subtitle)
+					.bold()
+					.font(.caption)
+					.foregroundStyle(.secondary)
+			}
 		}
 	}
 }

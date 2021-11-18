@@ -9,21 +9,21 @@ import Foundation
 
 struct Photo: Identifiable, Codable, Equatable {
 	
-	var id: Int
-	var url: String
+	public var id: Int
+	public var url: String
 	
-	var width: Int
-	var height: Int
+	public var width: Int
+	public var height: Int
 	
-	var src: Dictionary<Size.RawValue,String>
+	public var src: Dictionary<Size.RawValue,String>
 	
-	private var photographer: String?
-	private var photographerUrl: String?
-	private var photographerId: Int?
+	public var avgColor: String { return avg_color }
 	
-	private var avgColor: String?
+	public var photographer: String
 	
-	public var photographerName: String { self.photographer ?? "" }
+	private var photographer_url: String
+	private var photographer_id: Int
+	private var avg_color: String
 	
 	enum Size: String {
 		case original, large2x, large, medium, small, portrait, landscape, tiny

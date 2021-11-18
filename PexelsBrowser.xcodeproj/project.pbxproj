@@ -26,6 +26,10 @@
 		2861B2AF2742B1240026CBF6 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2861B2AE2742B1240026CBF6 /* Environment.swift */; };
 		2861B2B12742B1FD0026CBF6 /* APIUrls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2861B2B02742B1FD0026CBF6 /* APIUrls.swift */; };
 		2861B2B32742B6C70026CBF6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2861B2B22742B6C60026CBF6 /* README.md */; };
+		28714A382746EC1E00CAE3DA /* CollectionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28714A372746EC1E00CAE3DA /* CollectionCategory.swift */; };
+		28714A3A2746EE1F00CAE3DA /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28714A392746EE1F00CAE3DA /* CollectionsView.swift */; };
+		28714A3C2746F6E500CAE3DA /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28714A3B2746F6E500CAE3DA /* Color+Hex.swift */; };
+		28714A3E274700AC00CAE3DA /* CollectionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28714A3D274700AC00CAE3DA /* CollectionDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +53,10 @@
 		2861B2AE2742B1240026CBF6 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		2861B2B02742B1FD0026CBF6 /* APIUrls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUrls.swift; sourceTree = "<group>"; };
 		2861B2B22742B6C60026CBF6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		28714A372746EC1E00CAE3DA /* CollectionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCategory.swift; sourceTree = "<group>"; };
+		28714A392746EE1F00CAE3DA /* CollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsView.swift; sourceTree = "<group>"; };
+		28714A3B2746F6E500CAE3DA /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
+		28714A3D274700AC00CAE3DA /* CollectionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +114,8 @@
 			children = (
 				28506CEB2742485800EDA33E /* RouterView.swift */,
 				2861B2942742AC3E0026CBF6 /* PopularView.swift */,
+				28714A392746EE1F00CAE3DA /* CollectionsView.swift */,
+				28714A3D274700AC00CAE3DA /* CollectionDetailView.swift */,
 				2861B2962742AC560026CBF6 /* SearchView.swift */,
 				2861B29A2742AC8F0026CBF6 /* Supporting Views */,
 			);
@@ -129,6 +139,7 @@
 				2861B2A72742AFE40026CBF6 /* APIRequest+ResultsWrapper.swift */,
 				2861B2A02742AEC10026CBF6 /* ImageSaver.swift */,
 				2861B29E2742AE9D0026CBF6 /* Photo.swift */,
+				28714A372746EC1E00CAE3DA /* CollectionCategory.swift */,
 				2861B2A92742B0870026CBF6 /* LPNotification.swift */,
 			);
 			path = Model;
@@ -138,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				2861B2A22742AF130026CBF6 /* String+Encoding.swift */,
+				28714A3B2746F6E500CAE3DA /* Color+Hex.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -229,9 +241,12 @@
 			files = (
 				2861B29F2742AE9D0026CBF6 /* Photo.swift in Sources */,
 				2861B2A32742AF130026CBF6 /* String+Encoding.swift in Sources */,
+				28714A3A2746EE1F00CAE3DA /* CollectionsView.swift in Sources */,
+				28714A382746EC1E00CAE3DA /* CollectionCategory.swift in Sources */,
 				2861B2AD2742B0BF0026CBF6 /* APIKeys.swift in Sources */,
 				2861B2992742AC770026CBF6 /* PhotoCard.swift in Sources */,
 				2861B2AF2742B1240026CBF6 /* Environment.swift in Sources */,
+				28714A3C2746F6E500CAE3DA /* Color+Hex.swift in Sources */,
 				2861B2972742AC560026CBF6 /* SearchView.swift in Sources */,
 				28506CEC2742485800EDA33E /* RouterView.swift in Sources */,
 				2861B2A12742AEC10026CBF6 /* ImageSaver.swift in Sources */,
@@ -243,6 +258,7 @@
 				2861B29D2742AE6D0026CBF6 /* SubtitleView.swift in Sources */,
 				28506CEA2742485800EDA33E /* PexelsBrowserApp.swift in Sources */,
 				2861B2AA2742B0870026CBF6 /* LPNotification.swift in Sources */,
+				28714A3E274700AC00CAE3DA /* CollectionDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
