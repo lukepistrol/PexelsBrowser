@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CoreHaptics
 
 class ViewModel: ObservableObject {
 	
@@ -24,6 +25,8 @@ class ViewModel: ObservableObject {
 		}
 	}
 	
+	private var engine: CHHapticEngine?
+	
 	private var curatedPage = 1
 	private var searchPage = 1
 	private var categoriesPage = 1
@@ -33,6 +36,7 @@ class ViewModel: ObservableObject {
 	
 	init() {
 		getCuratedImages()
+		prepareHaptics()
 	}
 	
 	func setCuratedImages(_ photos: Array<Photo>) {
@@ -113,6 +117,26 @@ class ViewModel: ObservableObject {
 	}
 }
 
+
+extension ViewModel {
+	
+	func prepareHaptics() {
+		guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
+		
+		do {
+			self.engine = try CHHapticEngine()
+			try engine?.start()
+		} catch {
+			print("There was an error creating the engine: \(error.localizedDescription)")
+		}
+	}
+	
+	func playHaptic() {
+		let generator = UINotificationFeedbackGenerator()
+		generator.notificationOccurred(.success)
+	}
+	
+}
 
 
 

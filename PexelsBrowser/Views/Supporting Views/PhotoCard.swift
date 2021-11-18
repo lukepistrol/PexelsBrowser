@@ -21,20 +21,21 @@ struct PhotoCard: View {
 				image
 				detailBox
 			}
-			.clipShape(RoundedRectangle(cornerRadius: 12))
+			.clipShape(RoundedRectangle(cornerRadius: showDetails ? 16 : 12))
 		}
 		.shadow(color: .black.opacity(0.2), radius: 12, x: 0, y: 4)
-		.padding(.horizontal, 20)
-		.padding(.bottom, 20)
+		.padding(.horizontal, showDetails ? 16 : 20)
+		.padding(.vertical, showDetails ? 4 : 10)
 		.onChange(of: model.showNotification) { newValue in
 			if newValue == true {
+				model.playHaptic()
 				downloading = false
 			}
 		}
 	}
 	
 	var detailBox: some View {
-		return HStack(spacing: 12) {
+		return HStack(alignment: showDetails ? .center : .bottom, spacing: 12) {
 			HStack {
 				SubtitleView(title: photo.photographer, subtitle: "Artist")
 				Spacer()
@@ -46,14 +47,14 @@ struct PhotoCard: View {
 			expandButton
 		}
 		.frame(maxWidth: .infinity, alignment: .leading)
-		.padding()
+		.padding(showDetails ? 20 : 16)
 		.background(Rectangle()
-						.cornerRadius(8)
+						.cornerRadius(12)
 						.foregroundStyle(.thinMaterial)
 						.offset(x: 0, y: showDetails ? 0 : 70)
 						.opacity(showDetails ? 1 : 0)
 						.shadow(color: .black.opacity(0.1), radius: 12, x: 0, y: 2)
-						.padding(4)
+						.padding(8)
 		)
 	}
 	
@@ -66,19 +67,20 @@ struct PhotoCard: View {
 				ProgressView()
 			} else {
 				Label("Save", systemImage: "arrow.down")
+					.labelStyle(.iconOnly)
 					.font(.headline)
 			}
 		}
-		.frame(height: 32)
-		.padding(.horizontal, 12)
+		.frame(width: 36, height: 36)
 		.background(
-			Capsule()
+			Circle()
 				.foregroundStyle(.regularMaterial)
 		)
 	}
 	
 	var expandButton: some View {
 		Button {
+			model.playHaptic()
 			withAnimation(.spring(response: 0.3,
 								  dampingFraction: 0.7,
 								  blendDuration: 1)
@@ -91,7 +93,7 @@ struct PhotoCard: View {
 									.degrees(-135) : .zero)
 				.font(.headline)
 		}
-		.frame(width: 32,height: 32)
+		.frame(width: 36,height: 36)
 		.background(
 			Circle()
 				.foregroundStyle(showDetails ?

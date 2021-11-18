@@ -9,21 +9,21 @@ import SwiftUI
 
 struct RouterView: View {
 	
-	@State private var selectedView: Int = 0
+	@State private var selectedView: Environment.TabViewTag = .collections
 	
 	var body: some View {
 		TabView(selection: $selectedView) {
 			PopularView(selectedView: $selectedView)
 				.tabItem { Label("Popular", systemImage: "sparkles") }
-				.tag(0)
+				.tag(Environment.TabViewTag.popular)
 			CollectionsView()
 				.tabItem {
-					Label("Collections", systemImage: "star")
+					Label("Collections", systemImage: "text.below.photo")
 				}
-				.tag(1)
+				.tag(Environment.TabViewTag.collections)
 			SearchView()
 				.tabItem { Label("Search", systemImage: "magnifyingglass") }
-				.tag(2)
+				.tag(Environment.TabViewTag.search)
 		}
 	}
 }

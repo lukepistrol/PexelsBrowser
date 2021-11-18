@@ -7,4 +7,10 @@
 
 import Foundation
 
-struct Environment {}
+struct Environment {
+	enum TabViewTag: Int {
+		case popular = 0,
+			 collections = 1,
+			 search = 2
+	}
+}

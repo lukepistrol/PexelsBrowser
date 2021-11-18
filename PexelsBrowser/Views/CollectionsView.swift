@@ -14,13 +14,7 @@ struct CollectionsView: View {
 		NavigationView {
 			List {
 				ForEach(model.collectionCategories) { collection in
-					NavigationLink {
-						CollectionDetailView(collectionId: collection.id)
-							.navigationTitle(collection.title)
-					} label: {
-						SubtitleView(title: collection.title, subtitle: collection.photosCount.description + " Photos")
-							.padding(.vertical, 8)
-					}
+					CollectionCategoryCell(collection: collection)
 				}
 				Section {
 					Button("More") {
@@ -37,6 +31,29 @@ struct CollectionsView: View {
 			model.getCollectionCategories()
 		}
     }
+}
+
+struct CollectionCategoryCell: View {
+	var collection: CollectionCategory
+	
+	var body: some View {
+		NavigationLink {
+			CollectionDetailView(collectionId: collection.id)
+				.navigationTitle(collection.titleText)
+		} label: {
+			HStack {
+				SubtitleView(title: collection.titleText, subtitle: collection.photosCount.description + " Photos")
+					.padding(.vertical, 8)
+			}
+		}
+		.listRowBackground(
+			Rectangle()
+				.cornerRadius(12)
+				.foregroundColor(.white)
+				.padding(4)
+		)
+		.listRowSeparator(.hidden)
+	}
 }
 
 struct CollectionsView_Previews: PreviewProvider {

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PopularView: View {
-	@Binding var selectedView: Int
+	@Binding var selectedView: Environment.TabViewTag
 	
 	@StateObject private var model = ViewModel.shared
 	
@@ -29,7 +29,7 @@ struct PopularView: View {
 			.navigationTitle("Popular")
 			.toolbar(content: {
 				ToolbarItem(placement: .navigationBarTrailing) {
-					Button { selectedView = 1 } label: {
+					Button { selectedView = .search } label: {
 						Label("Search", systemImage: "magnifyingglass")
 							.foregroundColor(.accentColor)
 							.labelStyle(.iconOnly)
