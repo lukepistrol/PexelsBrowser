@@ -105,7 +105,7 @@ struct PhotoCard: View {
 			switch phase {
 			case .empty:
 				ZStack {
-					Rectangle().foregroundColor(.init(hex: photo.avgColor ?? "#FFFFFF"))
+					Rectangle().foregroundColor(.init(hex: photo.avgColor))
 					ProgressView()
 				}.aspectRatio(Double(photo.width)/Double(photo.height), contentMode: .fit)
 			case .success(let image):
@@ -115,7 +115,7 @@ struct PhotoCard: View {
 					.transition(.scale(scale: 1.05, anchor: .center).combined(with: .opacity).animation(.easeInOut))
 			case .failure(_):
 				ZStack {
-					Rectangle().foregroundColor(.init(hex: photo.avgColor ?? "#FFFFFF"))
+					Rectangle().foregroundColor(.init(hex: photo.avgColor))
 					Image(systemName: "wifi.exclamationmark")
 						.font(.largeTitle)
 				}.aspectRatio(Double(photo.width)/Double(photo.height), contentMode: .fit)
