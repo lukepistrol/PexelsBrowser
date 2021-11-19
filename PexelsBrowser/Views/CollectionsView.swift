@@ -12,21 +12,26 @@ struct CollectionsView: View {
 	
     var body: some View {
 		NavigationView {
-			List {
-				ForEach(model.collectionCategories) { collection in
-					CollectionCategoryCell(collection: collection)
-				}
-				Section {
-					Button("More") {
-						model.getCollectionCategories(nextPage: true)
+			if model.collectionCategories.isEmpty {
+				ProgressView()
+					.navigationTitle("Collections")
+			} else {
+				List {
+					ForEach(model.collectionCategories) { collection in
+						CollectionCategoryCell(collection: collection)
 					}
-					.frame(maxWidth: .infinity)
-					.buttonStyle(.bordered)
-					.controlSize(.regular)
-					.listRowBackground(Color.clear)
+					Section {
+						Button("More") {
+							model.getCollectionCategories(nextPage: true)
+						}
+						.frame(maxWidth: .infinity)
+						.buttonStyle(.bordered)
+						.controlSize(.regular)
+						.listRowBackground(Color.clear)
+					}
 				}
+				.navigationTitle("Collections")
 			}
-			.navigationTitle("Collections")
 		}.onAppear {
 			model.getCollectionCategories()
 		}

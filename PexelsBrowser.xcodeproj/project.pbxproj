@@ -30,6 +30,7 @@
 		28714A3A2746EE1F00CAE3DA /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28714A392746EE1F00CAE3DA /* CollectionsView.swift */; };
 		28714A3C2746F6E500CAE3DA /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28714A3B2746F6E500CAE3DA /* Color+Hex.swift */; };
 		28714A3E274700AC00CAE3DA /* CollectionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28714A3D274700AC00CAE3DA /* CollectionDetailView.swift */; };
+		28714A402747280000CAE3DA /* SearchCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28714A3F2747280000CAE3DA /* SearchCompletion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		28714A392746EE1F00CAE3DA /* CollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsView.swift; sourceTree = "<group>"; };
 		28714A3B2746F6E500CAE3DA /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		28714A3D274700AC00CAE3DA /* CollectionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailView.swift; sourceTree = "<group>"; };
+		28714A3F2747280000CAE3DA /* SearchCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCompletion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 				2861B29E2742AE9D0026CBF6 /* Photo.swift */,
 				28714A372746EC1E00CAE3DA /* CollectionCategory.swift */,
 				2861B2A92742B0870026CBF6 /* LPNotification.swift */,
+				28714A3F2747280000CAE3DA /* SearchCompletion.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				28506CEC2742485800EDA33E /* RouterView.swift in Sources */,
 				2861B2A12742AEC10026CBF6 /* ImageSaver.swift in Sources */,
 				2861B2B12742B1FD0026CBF6 /* APIUrls.swift in Sources */,
+				28714A402747280000CAE3DA /* SearchCompletion.swift in Sources */,
 				28506CF827424A9700EDA33E /* ViewModel.swift in Sources */,
 				2861B2A82742AFE40026CBF6 /* APIRequest+ResultsWrapper.swift in Sources */,
 				2861B2A62742AFBC0026CBF6 /* APIRequest.swift in Sources */,

@@ -14,28 +14,33 @@ struct PopularView: View {
 	
 	var body: some View {
 		NavigationView {
-			ScrollView {
-				LazyVStack(spacing: 0) {
-					ForEach(model.curatedImages) { photo in
-						PhotoCard(photo: photo)
-							.onAppear {
-								if photo == model.curatedImages.last {
-									model.getCuratedImages(nextPage: true)
+			if model.curatedImages.isEmpty {
+				ProgressView()
+					.navigationTitle("Popular")
+			} else {
+				ScrollView {
+					LazyVStack(spacing: 0) {
+						ForEach(model.curatedImages) { photo in
+							PhotoCard(photo: photo)
+								.onAppear {
+									if photo == model.curatedImages.last {
+										model.getCuratedImages(nextPage: true)
+									}
 								}
-							}
+						}
 					}
 				}
+				.navigationTitle("Popular")
+				.toolbar(content: {
+					ToolbarItem(placement: .navigationBarTrailing) {
+						Button { selectedView = .search } label: {
+							Label("Search", systemImage: "magnifyingglass")
+								.foregroundColor(.accentColor)
+								.labelStyle(.iconOnly)
+						}
+					}
+				})
 			}
-			.navigationTitle("Popular")
-			.toolbar(content: {
-				ToolbarItem(placement: .navigationBarTrailing) {
-					Button { selectedView = .search } label: {
-						Label("Search", systemImage: "magnifyingglass")
-							.foregroundColor(.accentColor)
-							.labelStyle(.iconOnly)
-					}
-				}
-			})
 		}
 		.alert(model.notification?.title ?? "", isPresented: $model.showNotification, actions: {
 			Button("Dismiss") {

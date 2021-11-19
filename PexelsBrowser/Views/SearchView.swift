@@ -16,6 +16,9 @@ struct SearchView: View {
 		NavigationView {
 			ScrollView {
 				LazyVStack(spacing: 0) {
+					if model.searchImages.isEmpty {
+						placeholder
+					}
 					ForEach(model.searchImages) { photo in
 						PhotoCard(photo: photo)
 							.onAppear {
@@ -27,7 +30,10 @@ struct SearchView: View {
 				}
 			}
 			.navigationTitle("Search")
-			.searchable(text: $searchText, placement: .navigationBarDrawer, prompt: "Search")
+			.searchable(text: $searchText,
+						placement: .navigationBarDrawer,
+						prompt: "Search",
+						suggestions: { suggestions })
 			.onSubmit(of: .search) {
 				model.getSearchImages(searchText)
 			}
@@ -36,7 +42,9 @@ struct SearchView: View {
 					model.setSearchImages([])
 				}
 			}
-			.alert(model.notification?.title ?? "", isPresented: $model.showNotification, actions: {
+			.alert(model.notification?.title ?? "",
+				   isPresented: $model.showNotification,
+				   actions: {
 				Button("Dismiss") {
 					model.removeNotification()
 				}
@@ -45,6 +53,27 @@ struct SearchView: View {
 					Text(model.notification?.message ?? "")
 				}
 			})
+		}
+	}
+	
+	var placeholder: some View {
+		VStack(spacing: 16) {
+			Image(systemName: "magnifyingglass")
+				.font(.largeTitle.weight(.semibold))
+				.imageScale(.large)
+			Text("Search for images")
+				.font(.callout)
+		}
+		.foregroundColor(Color(UIColor.tertiaryLabel))
+		.frame(height: 400)
+	}
+	
+	var suggestions: some View {
+		ForEach(SearchCompletion.list.filter { $0.starts(with: searchText) }, id: \.self) { item in
+			Text(item)
+				.onTapGesture {
+					searchText = item
+				}
 		}
 	}
 }
