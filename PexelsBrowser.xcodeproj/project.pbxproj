@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28077C1D274796B800B45221 /* CollectionCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28077C1C274796B800B45221 /* CollectionCategoryCell.swift */; };
 		28506CEA2742485800EDA33E /* PexelsBrowserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28506CE92742485800EDA33E /* PexelsBrowserApp.swift */; };
 		28506CEC2742485800EDA33E /* RouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28506CEB2742485800EDA33E /* RouterView.swift */; };
 		28506CEE2742485800EDA33E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28506CED2742485800EDA33E /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		28077C1C274796B800B45221 /* CollectionCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCategoryCell.swift; sourceTree = "<group>"; };
 		28506CE62742485800EDA33E /* PexelsBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PexelsBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28506CE92742485800EDA33E /* PexelsBrowserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PexelsBrowserApp.swift; sourceTree = "<group>"; };
 		28506CEB2742485800EDA33E /* RouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterView.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				2861B2982742AC770026CBF6 /* PhotoCard.swift */,
+				28077C1C274796B800B45221 /* CollectionCategoryCell.swift */,
 				2861B29C2742AE6D0026CBF6 /* SubtitleView.swift */,
 			);
 			path = "Supporting Views";
@@ -253,6 +256,7 @@
 				2861B2972742AC560026CBF6 /* SearchView.swift in Sources */,
 				28506CEC2742485800EDA33E /* RouterView.swift in Sources */,
 				2861B2A12742AEC10026CBF6 /* ImageSaver.swift in Sources */,
+				28077C1D274796B800B45221 /* CollectionCategoryCell.swift in Sources */,
 				2861B2B12742B1FD0026CBF6 /* APIUrls.swift in Sources */,
 				28714A402747280000CAE3DA /* SearchCompletion.swift in Sources */,
 				28506CF827424A9700EDA33E /* ViewModel.swift in Sources */,
