@@ -23,7 +23,7 @@ struct CollectionCategoryCell: View {
 		.listRowBackground(
 			Rectangle()
 				.cornerRadius(12)
-				.foregroundColor(.white)
+				.foregroundStyle(.thickMaterial)
 				.padding(4)
 		)
 		.listRowSeparator(.hidden)
