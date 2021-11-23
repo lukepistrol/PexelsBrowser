@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LPColorUI
 
 struct PopularView: View {
 	@Binding var selectedView: Environment.TabViewTag
@@ -27,6 +28,7 @@ struct PopularView: View {
 										model.getCuratedImages(nextPage: true)
 									}
 								}
+								.foregroundColor(Color.separator)
 						}
 					}
 				}

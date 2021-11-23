@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LPColorUI
 
 struct PhotoCard: View {
 	@StateObject private var model = ViewModel.shared

@@ -29,9 +29,9 @@
 		2861B2B32742B6C70026CBF6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2861B2B22742B6C60026CBF6 /* README.md */; };
 		28714A382746EC1E00CAE3DA /* CollectionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28714A372746EC1E00CAE3DA /* CollectionCategory.swift */; };
 		28714A3A2746EE1F00CAE3DA /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28714A392746EE1F00CAE3DA /* CollectionsView.swift */; };
-		28714A3C2746F6E500CAE3DA /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28714A3B2746F6E500CAE3DA /* Color+Hex.swift */; };
 		28714A3E274700AC00CAE3DA /* CollectionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28714A3D274700AC00CAE3DA /* CollectionDetailView.swift */; };
 		28714A402747280000CAE3DA /* SearchCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28714A3F2747280000CAE3DA /* SearchCompletion.swift */; };
+		288CA10D274C6361006100F0 /* LPColorUI in Frameworks */ = {isa = PBXBuildFile; productRef = 288CA10C274C6361006100F0 /* LPColorUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,7 +58,6 @@
 		2861B2B22742B6C60026CBF6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		28714A372746EC1E00CAE3DA /* CollectionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCategory.swift; sourceTree = "<group>"; };
 		28714A392746EE1F00CAE3DA /* CollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsView.swift; sourceTree = "<group>"; };
-		28714A3B2746F6E500CAE3DA /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		28714A3D274700AC00CAE3DA /* CollectionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailView.swift; sourceTree = "<group>"; };
 		28714A3F2747280000CAE3DA /* SearchCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCompletion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -68,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				288CA10D274C6361006100F0 /* LPColorUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,7 +155,6 @@
 			isa = PBXGroup;
 			children = (
 				2861B2A22742AF130026CBF6 /* String+Encoding.swift */,
-				28714A3B2746F6E500CAE3DA /* Color+Hex.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -187,6 +186,7 @@
 			);
 			name = PexelsBrowser;
 			packageProductDependencies = (
+				288CA10C274C6361006100F0 /* LPColorUI */,
 			);
 			productName = PexelsBrowser;
 			productReference = 28506CE62742485800EDA33E /* PexelsBrowser.app */;
@@ -217,6 +217,7 @@
 			);
 			mainGroup = 28506CDD2742485800EDA33E;
 			packageReferences = (
+				288CA10B274C6361006100F0 /* XCRemoteSwiftPackageReference "LPColorUI" */,
 			);
 			productRefGroup = 28506CE72742485800EDA33E /* Products */;
 			projectDirPath = "";
@@ -252,7 +253,6 @@
 				2861B2AD2742B0BF0026CBF6 /* APIKeys.swift in Sources */,
 				2861B2992742AC770026CBF6 /* PhotoCard.swift in Sources */,
 				2861B2AF2742B1240026CBF6 /* Environment.swift in Sources */,
-				28714A3C2746F6E500CAE3DA /* Color+Hex.swift in Sources */,
 				2861B2972742AC560026CBF6 /* SearchView.swift in Sources */,
 				28506CEC2742485800EDA33E /* RouterView.swift in Sources */,
 				2861B2A12742AEC10026CBF6 /* ImageSaver.swift in Sources */,
@@ -471,6 +471,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		288CA10B274C6361006100F0 /* XCRemoteSwiftPackageReference "LPColorUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lukepistrol/LPColorUI.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		288CA10C274C6361006100F0 /* LPColorUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 288CA10B274C6361006100F0 /* XCRemoteSwiftPackageReference "LPColorUI" */;
+			productName = LPColorUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 28506CDE2742485800EDA33E /* Project object */;
 }
