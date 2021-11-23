@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LPColorUI
 
 struct SearchView: View {
 	@StateObject private var model = ViewModel.shared
@@ -64,7 +65,7 @@ struct SearchView: View {
 			Text("Search for images")
 				.font(.callout)
 		}
-		.foregroundColor(Color(UIColor.tertiaryLabel))
+		.foregroundColor(.tertiary)
 		.frame(height: 400)
 	}
 	

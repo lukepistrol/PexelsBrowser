@@ -5,9 +5,9 @@
         "package": "LPColorUI",
         "repositoryURL": "https://github.com/lukepistrol/LPColorUI.git",
         "state": {
-          "branch": "master",
-          "revision": "072f36eb3ca004e9503fe7941e7bcae0336c019b",
-          "version": null
+          "branch": null,
+          "revision": "ad8a028dcbbe68bee77521fcced00e252998844e",
+          "version": "1.0.0"
         }
       }
     ]

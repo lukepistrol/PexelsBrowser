@@ -28,7 +28,6 @@ struct PopularView: View {
 										model.getCuratedImages(nextPage: true)
 									}
 								}
-								.foregroundColor(Color.separator)
 						}
 					}
 				}
