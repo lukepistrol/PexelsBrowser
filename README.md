@@ -26,4 +26,4 @@ extension Environment {
 
 API Reference can be found [here](https://www.pexels.com/api/documentation/)
 
-**Feel free to check out my other projects on my [website](https://lukaspistrol.com) **
+**Feel free to check out my other projects on my [website](https://lukaspistrol.com)**
