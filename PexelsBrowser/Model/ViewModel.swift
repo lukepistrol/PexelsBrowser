@@ -6,14 +6,15 @@
 //
 
 import Foundation
+import Pexels_Swift
 import UIKit
 import CoreHaptics
 
 class ViewModel: ObservableObject {
 	
-	@Published private (set) var curatedImages: Array<Photo> = []
-	@Published private (set) var searchImages: Array<Photo> = []
-	@Published private (set) var collectionImages: Array<Photo> = []
+	@Published private (set) var curatedImages: Array<PSPhoto> = []
+	@Published private (set) var searchImages: Array<PSPhoto> = []
+	@Published private (set) var collectionImages: Array<PSPhoto> = []
 	@Published private (set) var collectionCategories: Array<CollectionCategory> = []
 	
 	@Published var showNotification: Bool = false
@@ -35,68 +36,81 @@ class ViewModel: ObservableObject {
 	static let shared: ViewModel = .init()
 	
 	init() {
+        PexelsSwift.shared.setAPIKey(Environment.APIKeys.pexels.key)
 		getCuratedImages()
 		prepareHaptics()
 	}
 	
-	func setCuratedImages(_ photos: Array<Photo>) {
+	func setCuratedImages(_ photos: Array<PSPhoto>) {
 		self.curatedImages = photos
 	}
 	
-	func setSearchImages(_ photos: Array<Photo>) {
+	func setSearchImages(_ photos: Array<PSPhoto>) {
 		self.searchImages = photos
 	}
 	
-	func setCollectionImages(_ photos: Array<Photo>) {
+	func setCollectionImages(_ photos: Array<PSPhoto>) {
 		self.collectionImages = photos
 	}
 	
 	func getSearchImages(_ query: String, nextPage: Bool = false) {
 		if nextPage { searchPage += 1 } else { searchPage = 1 }
-		APIRequest.shared.fetch(.search, searchText: query, page: searchPage) { results in
-			if self.searchPage == 1 {
-				self.searchImages = results
-			} else {
-				self.searchImages.append(contentsOf: results)
-			}
-		}
+        Task {
+            let results = await PexelsSwift.shared.getPhotos(search: query, page: searchPage)
+            DispatchQueue.main.async {
+                if self.searchPage == 1 {
+                    self.searchImages = results
+                } else {
+                    self.searchImages.append(contentsOf: results)
+                }
+            }
+        }
 	}
 	
 	func getCuratedImages(nextPage: Bool = false) {
 		if nextPage { curatedPage += 1 } else { curatedPage = 1 }
-		APIRequest.shared.fetch(.curated, page: curatedPage) { results in
-			if self.curatedPage == 1 {
-				self.curatedImages = results
-			} else {
-				self.curatedImages.append(contentsOf: results)
-			}
+        Task {
+            let results = await PexelsSwift.shared.getCuratedPhotos(page: curatedPage)
+            DispatchQueue.main.async {
+                if self.curatedPage == 1 {
+                    self.curatedImages = results
+                } else {
+                    self.curatedImages.append(contentsOf: results)
+                }
+            }
 		}
 	}
 	
 	func getCollectionImages(for id: String, nextPage: Bool = false) {
 		if nextPage { collectionPage += 1 } else { collectionPage = 1 }
-		APIRequest.shared.fetch(.collections, searchText: id, page: collectionPage) { results in
-			if self.collectionPage == 1 {
-				self.collectionImages = results
-			} else {
-				self.collectionImages.append(contentsOf: results)
-			}
+        Task {
+            let results = await PexelsSwift.shared.getPhotos(for: id, page: collectionPage)
+            DispatchQueue.main.async {
+                if self.collectionPage == 1 {
+                    self.collectionImages = results
+                } else {
+                    self.collectionImages.append(contentsOf: results)
+                }
+            }
 		}
 	}
 	
 	func getCollectionCategories(nextPage: Bool = false) {
 		if nextPage { categoriesPage += 1 } else { categoriesPage = 1 }
-		APIRequest.shared.fetchCollectionCategories(page: categoriesPage) { results in
-			if self.categoriesPage == 1 {
-				self.collectionCategories = results.filter { $0.photosCount > 0 }
-			} else {
-				self.collectionCategories.append(contentsOf: results.filter { $0.photosCount > 0 })
-			}
+        Task {
+            let results = await PexelsSwift.shared.getCategories(page: categoriesPage)
+            DispatchQueue.main.async {
+                if self.categoriesPage == 1 {
+                    self.collectionCategories = results.filter { $0.photosCount > 0 }
+                } else {
+                    self.collectionCategories.append(contentsOf: results.filter { $0.photosCount > 0 })
+                }
+            }
 		}
 	}
 	
-	func save(image: Photo) {
-		if let data = try? Data(contentsOf: URL(string: image.src[Photo.Size.original.rawValue]!)!) {
+	func save(image: PSPhoto) {
+		if let data = try? Data(contentsOf: URL(string: image.source[PSPhoto.Size.original.rawValue]!)!) {
 			if let image = UIImage(data: data) {
 				ImageSaver().writeToPhotoAlbum(image: image)
 			}

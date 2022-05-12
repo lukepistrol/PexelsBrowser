@@ -1,16 +1,23 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "LPColorUI",
-        "repositoryURL": "https://github.com/lukepistrol/LPColorUI.git",
-        "state": {
-          "branch": null,
-          "revision": "b744ff4b6586be1cbf6bb31d6035e4a24c29124f",
-          "version": "1.1.0"
-        }
+  "pins" : [
+    {
+      "identity" : "lpcolorui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/lukepistrol/LPColorUI.git",
+      "state" : {
+        "revision" : "b744ff4b6586be1cbf6bb31d6035e4a24c29124f",
+        "version" : "1.1.0"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "pexels-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/lukepistrol/Pexels-Swift.git",
+      "state" : {
+        "revision" : "d68261c2930f3b6d20886be2a123def1dba834ed",
+        "version" : "0.1.0"
+      }
+    }
+  ],
+  "version" : 2
 }

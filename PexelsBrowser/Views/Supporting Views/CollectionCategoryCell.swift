@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Pexels_Swift
 
 struct CollectionCategoryCell: View {
 	var collection: CollectionCategory
@@ -13,10 +14,10 @@ struct CollectionCategoryCell: View {
 	var body: some View {
 		NavigationLink {
 			CollectionDetailView(collectionId: collection.id)
-				.navigationTitle(collection.titleText)
+                .navigationTitle(collection.title)
 		} label: {
 			HStack {
-				SubtitleView(title: collection.titleText, subtitle: collection.photosCount.description + " Photos")
+				SubtitleView(title: collection.title, subtitle: collection.photosCount.description + " Photos")
 					.padding(.vertical, 8)
 			}
 		}

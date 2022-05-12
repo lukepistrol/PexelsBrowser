@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import Pexels_Swift
 import LPColorUI
 
 struct PhotoCard: View {
 	@StateObject private var model = ViewModel.shared
 	
-	var photo: Photo
+	var photo: PSPhoto
 	
 	@State private var showDetails: Bool = false
 	@State private var downloading: Bool = false
@@ -103,12 +104,12 @@ struct PhotoCard: View {
 	}
 	
 	var image: some View {
-		AsyncImage(url: URL(string: photo.src[Photo.Size.large2x.rawValue]!),
+		AsyncImage(url: URL(string: photo.source[PSPhoto.Size.large2x.rawValue]!),
 				   transaction: Transaction(animation: .easeInOut)) { phase in
 			switch phase {
 			case .empty:
 				ZStack {
-					Rectangle().foregroundColor(.init(hex: photo.avgColor))
+					Rectangle().foregroundColor(.init(hex: photo.averageColor))
 					ProgressView()
 				}.aspectRatio(Double(photo.width)/Double(photo.height), contentMode: .fit)
 			case .success(let image):
@@ -118,7 +119,7 @@ struct PhotoCard: View {
 					.transition(.scale(scale: 1.05, anchor: .center).combined(with: .opacity).animation(.easeInOut))
 			case .failure(_):
 				ZStack {
-					Rectangle().foregroundColor(.init(hex: photo.avgColor))
+					Rectangle().foregroundColor(.init(hex: photo.averageColor))
 					Image(systemName: "wifi.exclamationmark")
 						.font(.largeTitle)
 				}.aspectRatio(Double(photo.width)/Double(photo.height), contentMode: .fit)
