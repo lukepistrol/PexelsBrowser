@@ -10,6 +10,8 @@
 
 Simple app using [Pexels](https://pexels.com) API written in Swift using SwiftUI
 
+> If you're looking for the stand-alone API wrapper, check out [`Pexels-Swift`](https://github.com/lukepistrol/Pexels-Swift)!
+
 ![Pexels Browser Preview](https://github.com/lukepistrol/PexelsBrowser/blob/master/Resources/PexelsBrowserApp.jpg "Pexels Browser")
 
 This app showcases how to implement simple APIs from providers like [Pexels](https://pexels.com)
