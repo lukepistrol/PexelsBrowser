@@ -9,7 +9,7 @@ import SwiftUI
 import PexelsSwift
 
 struct CollectionCategoryCell: View {
-	var collection: CollectionCategory
+	var collection: PSCollectionCategory
 	
 	var body: some View {
 		NavigationLink {

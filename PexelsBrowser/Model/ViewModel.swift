@@ -15,7 +15,7 @@ class ViewModel: ObservableObject {
 	@Published private (set) var curatedImages: Array<PSPhoto> = []
 	@Published private (set) var searchImages: Array<PSPhoto> = []
 	@Published private (set) var collectionImages: Array<PSPhoto> = []
-	@Published private (set) var collectionCategories: Array<CollectionCategory> = []
+	@Published private (set) var collectionCategories: Array<PSCollectionCategory> = []
 	
 	@Published var showNotification: Bool = false
 	
@@ -56,7 +56,7 @@ class ViewModel: ObservableObject {
 	func getSearchImages(_ query: String, nextPage: Bool = false) {
 		if nextPage { searchPage += 1 } else { searchPage = 1 }
         Task {
-            let results = await PexelsSwift.shared.getPhotos(search: query, page: searchPage)
+            let results = await PexelsSwift.shared.searchPhotos(query, page: searchPage)
             DispatchQueue.main.async {
                 if self.searchPage == 1 {
                     self.searchImages = results
