@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Pexels_Swift
+import PexelsSwift
 
 struct CollectionCategoryCell: View {
 	var collection: CollectionCategory

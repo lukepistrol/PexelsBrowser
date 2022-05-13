@@ -27,7 +27,7 @@
 		28714A3E274700AC00CAE3DA /* CollectionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28714A3D274700AC00CAE3DA /* CollectionDetailView.swift */; };
 		28714A402747280000CAE3DA /* SearchCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28714A3F2747280000CAE3DA /* SearchCompletion.swift */; };
 		288CA10D274C6361006100F0 /* LPColorUI in Frameworks */ = {isa = PBXBuildFile; productRef = 288CA10C274C6361006100F0 /* LPColorUI */; };
-		28FB4576282DBD7700763D9D /* Pexels-Swift in Frameworks */ = {isa = PBXBuildFile; productRef = 28FB4575282DBD7700763D9D /* Pexels-Swift */; };
+		28CFA5C5282E5E190070528D /* PexelsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 28CFA5C4282E5E190070528D /* PexelsSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,7 +59,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				288CA10D274C6361006100F0 /* LPColorUI in Frameworks */,
-				28FB4576282DBD7700763D9D /* Pexels-Swift in Frameworks */,
+				28CFA5C5282E5E190070528D /* PexelsSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,7 +182,7 @@
 			name = PexelsBrowser;
 			packageProductDependencies = (
 				288CA10C274C6361006100F0 /* LPColorUI */,
-				28FB4575282DBD7700763D9D /* Pexels-Swift */,
+				28CFA5C4282E5E190070528D /* PexelsSwift */,
 			);
 			productName = PexelsBrowser;
 			productReference = 28506CE62742485800EDA33E /* PexelsBrowser.app */;
@@ -489,10 +489,10 @@
 			package = 288CA10B274C6361006100F0 /* XCRemoteSwiftPackageReference "LPColorUI" */;
 			productName = LPColorUI;
 		};
-		28FB4575282DBD7700763D9D /* Pexels-Swift */ = {
+		28CFA5C4282E5E190070528D /* PexelsSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 28FB4574282DBD7700763D9D /* XCRemoteSwiftPackageReference "Pexels-Swift" */;
-			productName = "Pexels-Swift";
+			productName = PexelsSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

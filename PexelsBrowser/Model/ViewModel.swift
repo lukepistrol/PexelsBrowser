@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Pexels_Swift
+import PexelsSwift
 import UIKit
 import CoreHaptics
 

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Pexels_Swift
+import PexelsSwift
 import LPColorUI
 
 struct PhotoCard: View {
