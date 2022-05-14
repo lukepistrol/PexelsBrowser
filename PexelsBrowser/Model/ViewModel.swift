@@ -15,7 +15,7 @@ class ViewModel: ObservableObject {
 	@Published private (set) var curatedImages: Array<PSPhoto> = []
 	@Published private (set) var searchImages: Array<PSPhoto> = []
 	@Published private (set) var collectionImages: Array<PSPhoto> = []
-	@Published private (set) var collectionCategories: Array<PSCollectionCategory> = []
+	@Published private (set) var collectionCategories: Array<PSCollection> = []
 	
 	@Published var showNotification: Bool = false
 	
@@ -57,11 +57,17 @@ class ViewModel: ObservableObject {
 		if nextPage { searchPage += 1 } else { searchPage = 1 }
         Task {
             let results = await PexelsSwift.shared.searchPhotos(query, page: searchPage)
-            DispatchQueue.main.async {
-                if self.searchPage == 1 {
-                    self.searchImages = results
-                } else {
-                    self.searchImages.append(contentsOf: results)
+            switch results {
+            case .failure(let error):
+                print(error.localizedDescription)
+                return
+            case .success(let photos):
+                DispatchQueue.main.async {
+                    if self.searchPage == 1 {
+                        self.searchImages = photos
+                    } else {
+                        self.searchImages.append(contentsOf: photos)
+                    }
                 }
             }
         }
@@ -71,11 +77,17 @@ class ViewModel: ObservableObject {
 		if nextPage { curatedPage += 1 } else { curatedPage = 1 }
         Task {
             let results = await PexelsSwift.shared.getCuratedPhotos(page: curatedPage)
-            DispatchQueue.main.async {
-                if self.curatedPage == 1 {
-                    self.curatedImages = results
-                } else {
-                    self.curatedImages.append(contentsOf: results)
+            switch results {
+            case .failure(let error):
+                print(error.localizedDescription)
+                return
+            case .success(let photos):
+                DispatchQueue.main.async {
+                    if self.curatedPage == 1 {
+                        self.curatedImages = photos
+                    } else {
+                        self.curatedImages.append(contentsOf: photos)
+                    }
                 }
             }
 		}
@@ -85,11 +97,17 @@ class ViewModel: ObservableObject {
 		if nextPage { collectionPage += 1 } else { collectionPage = 1 }
         Task {
             let results = await PexelsSwift.shared.getPhotos(for: id, page: collectionPage)
-            DispatchQueue.main.async {
-                if self.collectionPage == 1 {
-                    self.collectionImages = results
-                } else {
-                    self.collectionImages.append(contentsOf: results)
+            switch results {
+            case .failure(let error):
+                print(error.localizedDescription)
+                return
+            case .success(let photos):
+                DispatchQueue.main.async {
+                    if self.collectionPage == 1 {
+                        self.collectionImages = photos
+                    } else {
+                        self.collectionImages.append(contentsOf: photos)
+                    }
                 }
             }
 		}
@@ -98,12 +116,18 @@ class ViewModel: ObservableObject {
 	func getCollectionCategories(nextPage: Bool = false) {
 		if nextPage { categoriesPage += 1 } else { categoriesPage = 1 }
         Task {
-            let results = await PexelsSwift.shared.getCategories(page: categoriesPage)
-            DispatchQueue.main.async {
-                if self.categoriesPage == 1 {
-                    self.collectionCategories = results.filter { $0.photosCount > 0 }
-                } else {
-                    self.collectionCategories.append(contentsOf: results.filter { $0.photosCount > 0 })
+            let results = await PexelsSwift.shared.getCollections(page: categoriesPage)
+            switch results {
+            case .failure(let error):
+                print(error.localizedDescription)
+                return
+            case .success(let photos):
+                DispatchQueue.main.async {
+                    if self.categoriesPage == 1 {
+                        self.collectionCategories = photos.filter { $0.photosCount > 0 }
+                    } else {
+                        self.collectionCategories.append(contentsOf: photos.filter { $0.photosCount > 0 })
+                    }
                 }
             }
 		}
