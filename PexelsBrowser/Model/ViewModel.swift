@@ -36,7 +36,10 @@ class ViewModel: ObservableObject {
 	static let shared: ViewModel = .init()
 	
 	init() {
-        PexelsSwift.shared.setAPIKey(Environment.APIKeys.pexels.key)
+        PexelsSwift.shared.setup(
+            apiKey: Environment.APIKeys.pexels.key,
+            logLevel: .off
+        )
 		getCuratedImages()
 		prepareHaptics()
 	}
@@ -59,7 +62,7 @@ class ViewModel: ObservableObject {
             let results = await PexelsSwift.shared.searchPhotos(query, page: searchPage)
             switch results {
             case .failure(let error):
-                print(error.localizedDescription)
+                print(error.description)
                 return
             case .success(let photos):
                 DispatchQueue.main.async {
@@ -79,7 +82,7 @@ class ViewModel: ObservableObject {
             let results = await PexelsSwift.shared.getCuratedPhotos(page: curatedPage)
             switch results {
             case .failure(let error):
-                print(error.localizedDescription)
+                print(error.description)
                 return
             case .success(let photos):
                 DispatchQueue.main.async {
@@ -99,7 +102,7 @@ class ViewModel: ObservableObject {
             let results = await PexelsSwift.shared.getPhotos(for: id, page: collectionPage)
             switch results {
             case .failure(let error):
-                print(error.localizedDescription)
+                print(error.description)
                 return
             case .success(let photos):
                 DispatchQueue.main.async {
@@ -119,7 +122,7 @@ class ViewModel: ObservableObject {
             let results = await PexelsSwift.shared.getCollections(page: categoriesPage)
             switch results {
             case .failure(let error):
-                print(error.localizedDescription)
+                print(error.description)
                 return
             case .success(let photos):
                 DispatchQueue.main.async {
