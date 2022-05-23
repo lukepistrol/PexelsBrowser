@@ -64,7 +64,7 @@ class ViewModel: ObservableObject {
             case .failure(let error):
                 print(error.description)
                 return
-            case .success(let (photos, _)):
+            case .success(let (photos, _, _)):
                 DispatchQueue.main.async {
                     if self.searchPage == 1 {
                         self.searchImages = photos
@@ -84,7 +84,7 @@ class ViewModel: ObservableObject {
             case .failure(let error):
                 print(error.description)
                 return
-            case .success(let (photos, _)):
+            case .success(let (photos, _, _)):
                 DispatchQueue.main.async {
                     if self.curatedPage == 1 {
                         self.curatedImages = photos
@@ -104,7 +104,7 @@ class ViewModel: ObservableObject {
             case .failure(let error):
                 print(error.description)
                 return
-            case .success(let (photos, _)):
+            case .success(let (photos, _, _)):
                 DispatchQueue.main.async {
                     if self.collectionPage == 1 {
                         self.collectionImages = photos
@@ -124,7 +124,7 @@ class ViewModel: ObservableObject {
             case .failure(let error):
                 print(error.description)
                 return
-            case .success(let (photos, _)):
+            case .success(let (photos, _, _)):
                 DispatchQueue.main.async {
                     if self.categoriesPage == 1 {
                         self.collectionCategories = photos.filter { $0.photosCount > 0 }
