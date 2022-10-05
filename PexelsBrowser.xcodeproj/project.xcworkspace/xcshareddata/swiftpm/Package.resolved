@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/lukepistrol/Pexels-Swift.git",
       "state" : {
-        "revision" : "c2de009e0add71dc2edacf1e025b5f65cc1f4d4e",
-        "version" : "0.9.0"
+        "branch" : "main",
+        "revision" : "66a7ef6edeb1606c868ccba29d859ff562b1b236"
       }
     }
   ],

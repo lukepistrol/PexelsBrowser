@@ -38,8 +38,9 @@ class ViewModel: ObservableObject {
 	init() {
         PexelsSwift.shared.setup(
             apiKey: Environment.APIKeys.pexels.key,
-            logLevel: .off
+            logLevel: .error
         )
+        PexelsSwift.shared.logger.delegate = self
 		getCuratedImages()
 		prepareHaptics()
 	}
@@ -179,10 +180,11 @@ extension ViewModel {
 	
 }
 
-
-
-
-
-
-
-
+extension ViewModel: PSLoggerDelegate {
+    func psLoggerMessageReceived(_ message: String) {
+        // Inject message to your logging infrastructure
+        //
+        // example:
+        // log.error(message)
+    }
+}

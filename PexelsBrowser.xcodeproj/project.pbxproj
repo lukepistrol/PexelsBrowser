@@ -26,8 +26,8 @@
 		28714A3A2746EE1F00CAE3DA /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28714A392746EE1F00CAE3DA /* CollectionsView.swift */; };
 		28714A3E274700AC00CAE3DA /* CollectionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28714A3D274700AC00CAE3DA /* CollectionDetailView.swift */; };
 		28714A402747280000CAE3DA /* SearchCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28714A3F2747280000CAE3DA /* SearchCompletion.swift */; };
+		2881119D28EDA0BB00519005 /* PexelsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2881119C28EDA0BB00519005 /* PexelsSwift */; };
 		288CA10D274C6361006100F0 /* LPColorUI in Frameworks */ = {isa = PBXBuildFile; productRef = 288CA10C274C6361006100F0 /* LPColorUI */; };
-		28CFA5C5282E5E190070528D /* PexelsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 28CFA5C4282E5E190070528D /* PexelsSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,7 +59,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				288CA10D274C6361006100F0 /* LPColorUI in Frameworks */,
-				28CFA5C5282E5E190070528D /* PexelsSwift in Frameworks */,
+				2881119D28EDA0BB00519005 /* PexelsSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,7 +182,7 @@
 			name = PexelsBrowser;
 			packageProductDependencies = (
 				288CA10C274C6361006100F0 /* LPColorUI */,
-				28CFA5C4282E5E190070528D /* PexelsSwift */,
+				2881119C28EDA0BB00519005 /* PexelsSwift */,
 			);
 			productName = PexelsBrowser;
 			productReference = 28506CE62742485800EDA33E /* PexelsBrowser.app */;
@@ -214,7 +214,7 @@
 			mainGroup = 28506CDD2742485800EDA33E;
 			packageReferences = (
 				288CA10B274C6361006100F0 /* XCRemoteSwiftPackageReference "LPColorUI" */,
-				28FB4574282DBD7700763D9D /* XCRemoteSwiftPackageReference "Pexels-Swift" */,
+				2881119B28EDA0BB00519005 /* XCRemoteSwiftPackageReference "Pexels-Swift" */,
 			);
 			productRefGroup = 28506CE72742485800EDA33E /* Products */;
 			projectDirPath = "";
@@ -467,6 +467,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2881119B28EDA0BB00519005 /* XCRemoteSwiftPackageReference "Pexels-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lukepistrol/Pexels-Swift.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		288CA10B274C6361006100F0 /* XCRemoteSwiftPackageReference "LPColorUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lukepistrol/LPColorUI.git";
@@ -475,26 +483,18 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		28FB4574282DBD7700763D9D /* XCRemoteSwiftPackageReference "Pexels-Swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/lukepistrol/Pexels-Swift.git";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 0.9.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2881119C28EDA0BB00519005 /* PexelsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2881119B28EDA0BB00519005 /* XCRemoteSwiftPackageReference "Pexels-Swift" */;
+			productName = PexelsSwift;
+		};
 		288CA10C274C6361006100F0 /* LPColorUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 288CA10B274C6361006100F0 /* XCRemoteSwiftPackageReference "LPColorUI" */;
 			productName = LPColorUI;
-		};
-		28CFA5C4282E5E190070528D /* PexelsSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 28FB4574282DBD7700763D9D /* XCRemoteSwiftPackageReference "Pexels-Swift" */;
-			productName = PexelsSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
